@@ -32,11 +32,13 @@ func task3() {
 	x, err := strconv.Atoi(os.Args[1])
 	if err != nil {
 		fmt.Println("Provide valid args")
+		return
 	}
 
 	y, err := strconv.Atoi(os.Args[2])
 	if err != nil {
 		fmt.Println("Provide valid args")
+		return
 	}
 
 	res, err := pow(x, y)
