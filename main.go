@@ -6,7 +6,15 @@ import (
 	"strconv"
 )
 
-func pow(x, y int) (res int) {
+func pow(x, y int) (res int, err error) {
+	if y == 0 {
+		if x == 0 {
+			return 0, fmt.Errorf("not valid data")
+		}
+
+		return 1, nil
+	}
+
 	res = x
 	for i := 1; i < y; i++ {
 		res *= x
@@ -21,14 +29,22 @@ func task3() {
 		return
 	}
 
-	x, err1 := strconv.Atoi(os.Args[1])
-	y, err2 := strconv.Atoi(os.Args[2])
-
-	if err1 != nil || err2 != nil {
+	x, err := strconv.Atoi(os.Args[1])
+	if err != nil {
 		fmt.Println("Provide valid args")
 	}
 
-	res := pow(x, y)
+	y, err := strconv.Atoi(os.Args[2])
+	if err != nil {
+		fmt.Println("Provide valid args")
+	}
+
+	res, err := pow(x, y)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+
 	fmt.Println(res)
 }
 
