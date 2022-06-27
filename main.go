@@ -7,18 +7,8 @@ import (
 )
 
 func isVowel(input string) bool {
-	switch input {
-	case "a":
-		return true
-	case "e":
-		return true
-	case "i":
-		return true
-	case "o":
-		return true
-	case "u":
-		return true
-	case "y":
+	switch strings.IndexAny(input, "aeiouy") {
+	case 0:
 		return true
 	default:
 		return false
