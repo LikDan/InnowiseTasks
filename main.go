@@ -3,54 +3,35 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
+	"strconv"
 )
 
-func isVowel(input string) bool {
-	switch input {
-	case "a":
-		return true
-	case "e":
-		return true
-	case "i":
-		return true
-	case "o":
-		return true
-	case "u":
-		return true
-	case "y":
-		return true
-	default:
-		return false
+func pow(x, y int) (res int) {
+	res = x
+	for i := 1; i < y; i++ {
+		res *= x
 	}
+
+	return
 }
 
-func task2() {
-	const alphabet = "abcdefghijklmnopqrstuvwxyz"
-
-	if len(os.Args) != 2 {
-		fmt.Println("Enter a letter")
+func task3() {
+	if len(os.Args) != 3 {
+		fmt.Println("Enter numbers")
 		return
 	}
 
-	letter := os.Args[1]
-	if len(letter) != 1 {
-		fmt.Println("Not valid input")
-		return
+	x, err1 := strconv.Atoi(os.Args[1])
+	y, err2 := strconv.Atoi(os.Args[2])
+
+	if err1 != nil || err2 != nil {
+		fmt.Println("Provide valid args")
 	}
 
-	if strings.IndexAny(letter, alphabet) == -1 {
-		fmt.Println("Not valid input")
-		return
-	}
-
-	if isVowel(letter) {
-		fmt.Printf("'%v' is a vowel\n", letter)
-	} else {
-		fmt.Printf("'%v' is a consonant\n", letter)
-	}
+	res := pow(x, y)
+	fmt.Println(res)
 }
 
 func main() {
-	task2()
+	task3()
 }
