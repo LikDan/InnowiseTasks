@@ -1,5 +1,56 @@
 package main
 
-func main() {
+import (
+	"fmt"
+	"os"
+	"strings"
+)
 
+func isVowel(input string) bool {
+	switch input {
+	case "a":
+		return true
+	case "e":
+		return true
+	case "i":
+		return true
+	case "o":
+		return true
+	case "u":
+		return true
+	case "y":
+		return true
+	default:
+		return false
+	}
+}
+
+func task2() {
+	const alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+	if len(os.Args) != 2 {
+		fmt.Println("Enter a letter")
+		return
+	}
+
+	letter := os.Args[1]
+	if len(letter) != 1 {
+		fmt.Println("Not valid input")
+		return
+	}
+
+	if strings.IndexAny(letter, alphabet) == -1 {
+		fmt.Println("Not valid input")
+		return
+	}
+
+	if isVowel(letter) {
+		fmt.Printf("'%v' is a vowel\n", letter)
+	} else {
+		fmt.Printf("'%v' is a consonant\n", letter)
+	}
+}
+
+func main() {
+	task2()
 }
