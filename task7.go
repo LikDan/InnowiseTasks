@@ -21,7 +21,7 @@ func FibonacciGoroutine(ch chan int, e chan bool) {
 
 		select {
 		case ch <- n:
-		case _ = <-e:
+		case <-e:
 			return
 		}
 	}
